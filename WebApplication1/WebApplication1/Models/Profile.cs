@@ -11,9 +11,25 @@ namespace WebApplication1.Models
     {
         public int profileId { get; set; }
         public string profileName { get; set; }
-        public List<Profile> GetAllProfiles()
+        public List<Profile> GetAll()
         {
-            List<ProfileDTO> profilesDTOList = new ProfileRepository().SelectAllProfiles();
+            List<ProfileDTO> profilesDTOList = new ProfileRepository().SelectAll();
+            if (profilesDTOList == null)
+                return null;
+            List<Profile> profilesModelsList = new List<Profile>();
+            foreach (var i in profilesDTOList)
+            {
+                profilesModelsList.Add(new Profile
+                {
+                    profileId = i.profileId,
+                    profileName = i.profileName
+                });
+            }
+            return profilesModelsList;
+        }
+        public List<Profile> GetByUserId(Guid _id)
+        {
+            List<ProfileDTO> profilesDTOList = new ProfileRepository().SelectByUserId(_id);
             if (profilesDTOList == null)
                 return null;
             List<Profile> profilesModelsList = new List<Profile>();

@@ -14,7 +14,7 @@ namespace WebApplication1.DTO
         public string mobile { get; set; }
         public string login { get; set; }
         public string password { get; set; }
-        public List<Position> position { get; set; }
-        public List<Profile> profile { get; set; }
+        public List<PositionDTO> position { get; set; }
+        public List<ProfileDTO> profile { get; set; }
     }
 }
